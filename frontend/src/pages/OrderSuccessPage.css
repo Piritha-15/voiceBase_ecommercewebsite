@@ -1,0 +1,269 @@
+.order-success-page {
+  padding: 40px 0;
+  min-height: 80vh;
+}
+
+.success-content {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  background: var(--white);
+  border-radius: 20px;
+  padding: 40px;
+  border: 2px solid #e2e8f0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.success-icon {
+  font-size: 80px;
+  margin-bottom: 20px;
+  animation: bounce 1s ease-in-out;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+.success-content h1 {
+  font-size: 36px;
+  color: var(--success);
+  margin-bottom: 32px;
+  font-weight: 700;
+}
+
+.order-details {
+  background: var(--light-gray);
+  padding: 24px;
+  border-radius: 12px;
+  margin-bottom: 32px;
+  border-left: 4px solid var(--success);
+}
+
+.order-id {
+  font-size: 24px;
+  color: var(--secondary-navy);
+  margin-bottom: 8px;
+}
+
+.order-amount {
+  font-size: 20px;
+  color: var(--primary-teal);
+  font-weight: 600;
+}
+
+.delivery-info {
+  text-align: left;
+  margin-bottom: 32px;
+}
+
+.delivery-info h2 {
+  font-size: 24px;
+  color: var(--secondary-navy);
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.info-card {
+  background: var(--light-gray);
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 16px;
+}
+
+.info-card p {
+  margin: 4px 0;
+  font-size: 16px;
+  color: var(--dark-gray);
+}
+
+.info-card p:first-child {
+  color: var(--secondary-navy);
+  font-weight: 600;
+}
+
+.delivery-timeline {
+  background: #e6f7ff;
+  padding: 16px;
+  border-radius: 8px;
+  border-left: 4px solid var(--primary-teal);
+}
+
+.delivery-timeline p {
+  margin: 4px 0;
+  font-size: 16px;
+  color: var(--secondary-navy);
+}
+
+.delivery-timeline p:first-child {
+  font-weight: 600;
+}
+
+.action-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 32px;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.track-order-btn,
+.continue-shopping-btn,
+.voice-summary-btn {
+  padding: 16px 24px;
+  border: none;
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.track-order-btn {
+  background: var(--primary-teal);
+  color: var(--white);
+}
+
+.track-order-btn:hover {
+  background: #006666;
+  transform: translateY(-2px);
+}
+
+.continue-shopping-btn {
+  background: var(--white);
+  color: var(--primary-teal);
+  border: 2px solid var(--primary-teal);
+}
+
+.continue-shopping-btn:hover {
+  background: var(--primary-teal);
+  color: var(--white);
+}
+
+.voice-summary-btn {
+  background: var(--secondary-navy);
+  color: var(--white);
+}
+
+.voice-summary-btn:hover {
+  background: #2d3748;
+  transform: translateY(-2px);
+}
+
+.thank-you-message {
+  background: linear-gradient(135deg, var(--primary-teal), #20b2aa);
+  color: var(--white);
+  padding: 24px;
+  border-radius: 12px;
+  margin-bottom: 32px;
+}
+
+.thank-you-message h3 {
+  font-size: 24px;
+  margin-bottom: 12px;
+}
+
+.thank-you-message p {
+  font-size: 16px;
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+.support-info {
+  background: var(--light-gray);
+  padding: 24px;
+  border-radius: 12px;
+  margin-bottom: 24px;
+  text-align: left;
+}
+
+.support-info h4 {
+  font-size: 20px;
+  color: var(--secondary-navy);
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.support-info > p {
+  text-align: center;
+  color: var(--dark-gray);
+  margin-bottom: 16px;
+}
+
+.support-contacts {
+  background: var(--white);
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+}
+
+.support-contacts p {
+  margin: 8px 0;
+  font-size: 16px;
+  color: var(--secondary-navy);
+  font-weight: 500;
+}
+
+.voice-commands {
+  background: var(--light-gray);
+  padding: 16px;
+  border-radius: 12px;
+  border-left: 4px solid var(--primary-teal);
+}
+
+.voice-commands h4 {
+  color: var(--secondary-navy);
+  margin-bottom: 8px;
+  font-size: 16px;
+}
+
+.voice-commands p {
+  color: var(--dark-gray);
+  font-size: 14px;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .success-content {
+    padding: 24px;
+    margin: 0 16px;
+  }
+  
+  .success-icon {
+    font-size: 60px;
+  }
+  
+  .success-content h1 {
+    font-size: 28px;
+  }
+  
+  .order-id {
+    font-size: 20px;
+  }
+  
+  .order-amount {
+    font-size: 18px;
+  }
+  
+  .action-buttons {
+    max-width: 100%;
+  }
+  
+  .track-order-btn,
+  .continue-shopping-btn,
+  .voice-summary-btn {
+    font-size: 16px;
+    padding: 14px 20px;
+  }
+}
