@@ -1,0 +1,520 @@
+{
+  "categories": [
+    {
+      "name": "Health & Medical",
+      "description": "Medical devices and health monitoring equipment"
+    },
+    {
+      "name": "Nutrition & Supplements",
+      "description": "Vitamins, minerals, and dietary supplements"
+    },
+    {
+      "name": "Mobility & Support",
+      "description": "Walking aids and mobility assistance devices"
+    },
+    {
+      "name": "Personal Care",
+      "description": "Personal hygiene and care products"
+    },
+    {
+      "name": "Home & Comfort",
+      "description": "Home safety and comfort products"
+    },
+    {
+      "name": "Daily Essentials",
+      "description": "Everyday essential items"
+    }
+  ],
+  "products": [
+    {
+      "name": "Blood Pressure Monitor",
+      "price": 2499,
+      "category": "Health & Medical",
+      "description": "Digital BP monitor with large display and memory function",
+      "rating": 4.5,
+      "reviews": 234,
+      "stock": 45,
+      "image": "🩺"
+    },
+    {
+      "name": "Glucose Monitor Kit",
+      "price": 1899,
+      "category": "Health & Medical",
+      "description": "Complete glucose monitoring kit with 50 test strips",
+      "rating": 4.6,
+      "reviews": 189,
+      "stock": 32,
+      "image": "💉"
+    },
+    {
+      "name": "Digital Thermometer",
+      "price": 299,
+      "category": "Health & Medical",
+      "description": "Fast and accurate digital thermometer",
+      "rating": 4.3,
+      "reviews": 456,
+      "stock": 120,
+      "image": "🌡️"
+    },
+    {
+      "name": "Pulse Oximeter",
+      "price": 1299,
+      "category": "Health & Medical",
+      "description": "Fingertip pulse oximeter for oxygen saturation monitoring",
+      "rating": 4.4,
+      "reviews": 312,
+      "stock": 67,
+      "image": "📊"
+    },
+    {
+      "name": "Nebulizer Machine",
+      "price": 3499,
+      "category": "Health & Medical",
+      "description": "Portable nebulizer for respiratory treatment",
+      "rating": 4.7,
+      "reviews": 145,
+      "stock": 28,
+      "image": "💨"
+    },
+    {
+      "name": "Hearing Aid",
+      "price": 8999,
+      "category": "Health & Medical",
+      "description": "Digital hearing aid with noise reduction",
+      "rating": 4.5,
+      "reviews": 98,
+      "stock": 15,
+      "image": "👂"
+    },
+    {
+      "name": "First Aid Kit",
+      "price": 899,
+      "category": "Health & Medical",
+      "description": "Complete first aid kit for home use",
+      "rating": 4.2,
+      "reviews": 567,
+      "stock": 89,
+      "image": "🏥"
+    },
+    {
+      "name": "Vitamin D3 Tablets",
+      "price": 349,
+      "category": "Nutrition & Supplements",
+      "description": "Vitamin D3 2000 IU for bone health, 60 tablets",
+      "rating": 4.6,
+      "reviews": 423,
+      "stock": 150,
+      "image": "💊"
+    },
+    {
+      "name": "Calcium + Vitamin D",
+      "price": 449,
+      "category": "Nutrition & Supplements",
+      "description": "Calcium carbonate with Vitamin D3, 60 tablets",
+      "rating": 4.5,
+      "reviews": 389,
+      "stock": 135,
+      "image": "💊"
+    },
+    {
+      "name": "Omega-3 Fish Oil",
+      "price": 699,
+      "category": "Nutrition & Supplements",
+      "description": "Omega-3 fatty acids for heart health, 60 capsules",
+      "rating": 4.7,
+      "reviews": 512,
+      "stock": 98,
+      "image": "🐟"
+    },
+    {
+      "name": "Multivitamin Tablets",
+      "price": 599,
+      "category": "Nutrition & Supplements",
+      "description": "Complete multivitamin for seniors, 60 tablets",
+      "rating": 4.4,
+      "reviews": 678,
+      "stock": 145,
+      "image": "💊"
+    },
+    {
+      "name": "Vitamin B-Complex",
+      "price": 399,
+      "category": "Nutrition & Supplements",
+      "description": "B-Complex vitamins for energy, 60 tablets",
+      "rating": 4.5,
+      "reviews": 345,
+      "stock": 112,
+      "image": "💊"
+    },
+    {
+      "name": "Glucosamine Chondroitin",
+      "price": 1299,
+      "category": "Nutrition & Supplements",
+      "description": "Joint support supplement, 60 tablets",
+      "rating": 4.6,
+      "reviews": 267,
+      "stock": 78,
+      "image": "🦴"
+    },
+    {
+      "name": "Probiotic Capsules",
+      "price": 899,
+      "category": "Nutrition & Supplements",
+      "description": "Digestive health probiotics, 30 capsules",
+      "rating": 4.5,
+      "reviews": 234,
+      "stock": 92,
+      "image": "💊"
+    },
+    {
+      "name": "Vitamin C Tablets",
+      "price": 299,
+      "category": "Nutrition & Supplements",
+      "description": "Vitamin C 1000mg for immunity, 60 tablets",
+      "rating": 4.4,
+      "reviews": 589,
+      "stock": 167,
+      "image": "🍊"
+    },
+    {
+      "name": "Walking Stick",
+      "price": 799,
+      "category": "Mobility & Support",
+      "description": "Adjustable aluminum walking stick with rubber grip",
+      "rating": 4.3,
+      "reviews": 234,
+      "stock": 56,
+      "image": "🦯"
+    },
+    {
+      "name": "Walker with Wheels",
+      "price": 3499,
+      "category": "Mobility & Support",
+      "description": "Foldable walker with wheels and seat",
+      "rating": 4.6,
+      "reviews": 156,
+      "stock": 23,
+      "image": "🚶"
+    },
+    {
+      "name": "Wheelchair",
+      "price": 8999,
+      "category": "Mobility & Support",
+      "description": "Lightweight foldable wheelchair",
+      "rating": 4.7,
+      "reviews": 89,
+      "stock": 12,
+      "image": "♿"
+    },
+    {
+      "name": "Quad Cane",
+      "price": 1299,
+      "category": "Mobility & Support",
+      "description": "Four-point cane for extra stability",
+      "rating": 4.5,
+      "reviews": 178,
+      "stock": 34,
+      "image": "🦯"
+    },
+    {
+      "name": "Cane with Seat",
+      "price": 1899,
+      "category": "Mobility & Support",
+      "description": "Walking cane with foldable seat",
+      "rating": 4.4,
+      "reviews": 123,
+      "stock": 28,
+      "image": "🪑"
+    },
+    {
+      "name": "Compression Socks",
+      "price": 599,
+      "category": "Personal Care",
+      "description": "Medical compression socks for circulation, pair",
+      "rating": 4.3,
+      "reviews": 345,
+      "stock": 89,
+      "image": "🧦"
+    },
+    {
+      "name": "Adult Diapers",
+      "price": 899,
+      "category": "Personal Care",
+      "description": "Comfortable adult diapers, pack of 10",
+      "rating": 4.5,
+      "reviews": 267,
+      "stock": 67,
+      "image": "🩲"
+    },
+    {
+      "name": "Electric Toothbrush",
+      "price": 1499,
+      "category": "Personal Care",
+      "description": "Rechargeable electric toothbrush with timer",
+      "rating": 4.6,
+      "reviews": 423,
+      "stock": 45,
+      "image": "🪥"
+    },
+    {
+      "name": "Knee Brace",
+      "price": 799,
+      "category": "Personal Care",
+      "description": "Adjustable knee support brace",
+      "rating": 4.4,
+      "reviews": 189,
+      "stock": 56,
+      "image": "🦵"
+    },
+    {
+      "name": "Heating Pad",
+      "price": 1299,
+      "category": "Home & Comfort",
+      "description": "Electric heating pad for pain relief",
+      "rating": 4.5,
+      "reviews": 312,
+      "stock": 43,
+      "image": "🔥"
+    },
+    {
+      "name": "Shower Chair",
+      "price": 2499,
+      "category": "Home & Comfort",
+      "description": "Non-slip shower chair with backrest",
+      "rating": 4.6,
+      "reviews": 178,
+      "stock": 29,
+      "image": "🪑"
+    },
+    {
+      "name": "Bed Rail",
+      "price": 1899,
+      "category": "Home & Comfort",
+      "description": "Adjustable bed rail for safety",
+      "rating": 4.4,
+      "reviews": 145,
+      "stock": 34,
+      "image": "🛏️"
+    },
+    {
+      "name": "Grab Bar",
+      "price": 899,
+      "category": "Home & Comfort",
+      "description": "Bathroom safety grab bar, stainless steel",
+      "rating": 4.5,
+      "reviews": 234,
+      "stock": 67,
+      "image": "🚿"
+    },
+    {
+      "name": "Raised Toilet Seat",
+      "price": 1499,
+      "category": "Home & Comfort",
+      "description": "Elevated toilet seat with handles",
+      "rating": 4.3,
+      "reviews": 167,
+      "stock": 38,
+      "image": "🚽"
+    },
+    {
+      "name": "Memory Foam Pillow",
+      "price": 1299,
+      "category": "Home & Comfort",
+      "description": "Orthopedic memory foam pillow",
+      "rating": 4.6,
+      "reviews": 456,
+      "stock": 78,
+      "image": "🛏️"
+    },
+    {
+      "name": "Lumbar Support Cushion",
+      "price": 899,
+      "category": "Home & Comfort",
+      "description": "Back support cushion for chairs",
+      "rating": 4.4,
+      "reviews": 289,
+      "stock": 92,
+      "image": "💺"
+    },
+    {
+      "name": "Bath Bench",
+      "price": 2199,
+      "category": "Home & Comfort",
+      "description": "Adjustable bath bench with backrest",
+      "rating": 4.5,
+      "reviews": 134,
+      "stock": 26,
+      "image": "🛁"
+    },
+    {
+      "name": "Reading Glasses",
+      "price": 499,
+      "category": "Daily Essentials",
+      "description": "Reading glasses +2.0 power",
+      "rating": 4.2,
+      "reviews": 567,
+      "stock": 145,
+      "image": "👓"
+    },
+    {
+      "name": "Pill Organizer",
+      "price": 299,
+      "category": "Daily Essentials",
+      "description": "7-day pill organizer with 4 compartments per day",
+      "rating": 4.5,
+      "reviews": 678,
+      "stock": 189,
+      "image": "💊"
+    },
+    {
+      "name": "Magnifying Glass",
+      "price": 399,
+      "category": "Daily Essentials",
+      "description": "LED magnifying glass with light",
+      "rating": 4.4,
+      "reviews": 345,
+      "stock": 112,
+      "image": "🔍"
+    },
+    {
+      "name": "Reacher Grabber",
+      "price": 599,
+      "category": "Daily Essentials",
+      "description": "Long reach grabber tool, 32 inches",
+      "rating": 4.3,
+      "reviews": 234,
+      "stock": 78,
+      "image": "🦾"
+    },
+    {
+      "name": "Zinc Supplement",
+      "price": 349,
+      "category": "Nutrition & Supplements",
+      "description": "Zinc 50mg for immune support, 60 tablets",
+      "rating": 4.5,
+      "reviews": 198,
+      "stock": 134,
+      "image": "💊"
+    },
+    {
+      "name": "Magnesium Tablets",
+      "price": 449,
+      "category": "Nutrition & Supplements",
+      "description": "Magnesium for muscle and nerve function, 60 tablets",
+      "rating": 4.4,
+      "reviews": 167,
+      "stock": 98,
+      "image": "💊"
+    },
+    {
+      "name": "CoQ10 Supplement",
+      "price": 899,
+      "category": "Nutrition & Supplements",
+      "description": "Coenzyme Q10 for heart health, 100mg, 60 capsules",
+      "rating": 4.6,
+      "reviews": 145,
+      "stock": 67,
+      "image": "❤️"
+    },
+    {
+      "name": "Turmeric Curcumin",
+      "price": 699,
+      "category": "Nutrition & Supplements",
+      "description": "Turmeric with black pepper for inflammation, 60 capsules",
+      "rating": 4.5,
+      "reviews": 234,
+      "stock": 89,
+      "image": "🌿"
+    },
+    {
+      "name": "Collagen Peptides",
+      "price": 1299,
+      "category": "Nutrition & Supplements",
+      "description": "Hydrolyzed collagen for joints and skin, 30 servings",
+      "rating": 4.7,
+      "reviews": 312,
+      "stock": 56,
+      "image": "💪"
+    },
+    {
+      "name": "Fiber Supplement",
+      "price": 599,
+      "category": "Nutrition & Supplements",
+      "description": "Psyllium husk fiber for digestive health, 60 capsules",
+      "rating": 4.4,
+      "reviews": 189,
+      "stock": 112,
+      "image": "🌾"
+    },
+    {
+      "name": "Melatonin Tablets",
+      "price": 399,
+      "category": "Nutrition & Supplements",
+      "description": "Melatonin 5mg for better sleep, 60 tablets",
+      "rating": 4.5,
+      "reviews": 456,
+      "stock": 145,
+      "image": "😴"
+    },
+    {
+      "name": "Iron Supplement",
+      "price": 349,
+      "category": "Nutrition & Supplements",
+      "description": "Iron 65mg for anemia prevention, 60 tablets",
+      "rating": 4.3,
+      "reviews": 178,
+      "stock": 123,
+      "image": "💊"
+    },
+    {
+      "name": "Stethoscope",
+      "price": 1899,
+      "category": "Health & Medical",
+      "description": "Professional stethoscope for home monitoring",
+      "rating": 4.6,
+      "reviews": 123,
+      "stock": 34,
+      "image": "🩺"
+    },
+    {
+      "name": "Medical Alert Bracelet",
+      "price": 799,
+      "category": "Health & Medical",
+      "description": "Emergency medical ID bracelet",
+      "rating": 4.4,
+      "reviews": 267,
+      "stock": 89,
+      "image": "⌚"
+    },
+    {
+      "name": "Pill Cutter",
+      "price": 199,
+      "category": "Daily Essentials",
+      "description": "Precision pill cutter and splitter",
+      "rating": 4.2,
+      "reviews": 345,
+      "stock": 167,
+      "image": "💊"
+    },
+    {
+      "name": "Blood Glucose Test Strips",
+      "price": 899,
+      "category": "Health & Medical",
+      "description": "50 glucose test strips",
+      "rating": 4.5,
+      "reviews": 234,
+      "stock": 78,
+      "image": "🩸"
+    },
+    {
+      "name": "Wrist Blood Pressure Monitor",
+      "price": 1999,
+      "category": "Health & Medical",
+      "description": "Portable wrist BP monitor",
+      "rating": 4.4,
+      "reviews": 189,
+      "stock": 45,
+      "image": "⌚"
+    }
+  ]
+}

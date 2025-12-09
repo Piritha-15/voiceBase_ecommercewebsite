@@ -257,24 +257,24 @@
     gap: 24px;
     padding: 20px;
   }
-  
+
   .product-image-large {
     font-size: 120px;
     padding: 20px;
   }
-  
+
   .product-title {
     font-size: 24px;
   }
-  
+
   .product-price {
     font-size: 28px;
   }
-  
+
   .action-buttons {
     flex-direction: column;
   }
-  
+
   .products-grid {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   }

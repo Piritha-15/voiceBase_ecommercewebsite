@@ -35,7 +35,7 @@ const BasicVoiceButton = () => {
       }
     }, 100);
   };
-  const { coordinatedSpeak, isSpeaking } = useSpeechCoordination();
+  const { isSpeaking } = useSpeechCoordination();
 
   // Simple and reliable voice recognition test
   const testVoiceRecognition = () => {
@@ -173,7 +173,7 @@ const BasicVoiceButton = () => {
     }
   }, []);
 
-  // Completely independent speech function (NO coordination with voice recognition)
+  // Smart coordinated speech function (prevents conflicts)
   const speak = (text) => {
     if (!text || text.trim() === '') {
       console.log('❌ Empty text, skipping speech');
@@ -189,12 +189,26 @@ const BasicVoiceButton = () => {
       return;
     }
 
-    console.log('🔊 INDEPENDENT SPEECH (NO COORDINATION):', text);
+    console.log('🔊 SMART COORDINATED SPEECH:', text);
     setLastSpokenText(normalizedText);
     setLastSpeechTime(currentTime);
 
-    // Simple speech synthesis - completely independent from voice recognition
+    // Smart coordination: pause voice recognition during speech
     try {
+      let wasListening = false;
+      
+      // Pause voice recognition if it's active
+      if (recognition && isCurrentlyListening && isVoiceActive) {
+        console.log('⏸️ Pausing voice recognition for speech...');
+        wasListening = true;
+        try {
+          recognition.stop();
+          setIsCurrentlyListening(false);
+        } catch (e) {
+          console.log('Note: Could not pause recognition:', e.message);
+        }
+      }
+
       const utterance = new SpeechSynthesisUtterance(text);
       utterance.rate = 0.9;
       utterance.pitch = 1.0;
@@ -202,11 +216,42 @@ const BasicVoiceButton = () => {
       utterance.lang = 'en-US';
 
       utterance.onend = () => {
-        console.log('✅ Speech completed (no coordination)');
+        console.log('✅ Speech completed');
+        
+        // Resume voice recognition if it was active
+        if (wasListening && isVoiceActiveRef.current) {
+          console.log('▶️ Resuming voice recognition...');
+          setTimeout(() => {
+            if (isVoiceActiveRef.current && recognition) {
+              try {
+                recognition.start();
+                setIsCurrentlyListening(true);
+                setStatus('🎤 Listening...');
+              } catch (error) {
+                console.log('Note: Could not resume recognition:', error.message);
+              }
+            }
+          }, 500);
+        }
       };
 
       utterance.onerror = (error) => {
         console.error('❌ Speech error:', error);
+        
+        // Resume recognition even on error
+        if (wasListening && isVoiceActiveRef.current) {
+          setTimeout(() => {
+            if (isVoiceActiveRef.current && recognition) {
+              try {
+                recognition.start();
+                setIsCurrentlyListening(true);
+                setStatus('🎤 Listening...');
+              } catch (error) {
+                console.log('Note: Could not resume after error:', error.message);
+              }
+            }
+          }, 500);
+        }
       };
 
       window.speechSynthesis.speak(utterance);
@@ -266,8 +311,10 @@ const BasicVoiceButton = () => {
 
   // Process voice commands with improved fuzzy matching and duplicate prevention
   const processCommand = (transcript) => {
-    console.log('🎯 Processing command:', transcript);
+    console.log('🎯 ===== PROCESSING COMMAND =====');
+    console.log('🎯 Raw transcript:', transcript);
     const command = transcript.toLowerCase().trim();
+    console.log('🎯 Normalized command:', command);
     const currentTime = Date.now();
 
     // Prevent processing the same command within 1 second (less aggressive)
@@ -281,64 +328,58 @@ const BasicVoiceButton = () => {
     setLastCommandTime(currentTime);
     setLastCommand(transcript);
     setStatus(`Heard: "${transcript}"`);
+    
+    console.log('🎯 Starting command matching...');
 
-    // Test commands
-    if (fuzzyMatch(command, ['hello', 'test', 'helo', 'tast'])) {
-      console.log('✅ Test command recognized');
+    // Test commands - VERY SIMPLE MATCHING
+    console.log('🎯 Checking test commands...');
+    if (command.includes('hello') || command.includes('test') || command.includes('hi')) {
+      console.log('✅ ===== TEST COMMAND MATCHED =====');
       setStatus('✅ Voice Working!');
       speak('Hello! Voice recognition is working perfectly!');
       return;
     }
 
-    // Cart commands with fuzzy matching for common mishearings
-    const cartPatterns = [
-      'cart', 'show cart', 'open cart', 'go to cart', 'move to cart',
-      'caret', 'card', 'cat', 'cot', 'kart', 'part', // Common mishearings
-      'motu capet', 'moto cart', 'motor cart', 'motu cart', // Specific mishearings you mentioned
-      'shopping cart', 'my cart', 'view cart'
-    ];
-
-    if (fuzzyMatch(command, cartPatterns) ||
-      command.includes('cart') ||
-      command.includes('caret') ||
-      command.includes('motu') ||
-      (command.includes('move') && (command.includes('cart') || command.includes('capet')))) {
-      console.log('🛒 Cart command recognized (fuzzy match)');
+    // Cart commands - VERY SIMPLE MATCHING
+    console.log('🎯 Checking cart commands...');
+    if (command.includes('cart') || command.includes('card') || command.includes('caret')) {
+      console.log('✅ ===== CART COMMAND MATCHED =====');
       setStatus('Opening cart');
       speak('Opening your shopping cart');
-      setTimeout(() => navigate('/cart'), 1000);
+      setTimeout(() => {
+        console.log('🛒 Navigating to cart...');
+        navigate('/cart');
+      }, 500);
       return;
     }
 
-    // Home navigation with fuzzy matching
-    const homePatterns = ['home', 'go home', 'home page', 'main page', 'hom', 'ohm'];
-    if (fuzzyMatch(command, homePatterns)) {
-      console.log('🏠 Navigating to home');
+    // Home navigation - VERY SIMPLE MATCHING
+    console.log('🎯 Checking home commands...');
+    if (command.includes('home')) {
+      console.log('✅ ===== HOME COMMAND MATCHED =====');
       setStatus('Going to home');
       speak('Going to home page');
-      setTimeout(() => navigate('/'), 1000);
+      setTimeout(() => {
+        console.log('🏠 Navigating to home...');
+        navigate('/');
+      }, 500);
       return;
     }
 
-    // Search commands with fuzzy matching
-    const searchPatterns = ['search', 'find', 'look for', 'serch', 'fined', 'surch'];
-    if (fuzzyMatch(command, searchPatterns)) {
-      let searchTerm = '';
-
-      // Extract search term with multiple patterns
-      const searchPrefixes = ['search for', 'find', 'look for', 'search', 'serch for', 'fined'];
-      for (const prefix of searchPrefixes) {
-        if (command.includes(prefix)) {
-          searchTerm = command.replace(prefix, '').trim();
-          break;
-        }
-      }
-
+    // Search commands - VERY SIMPLE MATCHING
+    console.log('🎯 Checking search commands...');
+    if (command.includes('search') || command.includes('find')) {
+      console.log('✅ ===== SEARCH COMMAND MATCHED =====');
+      let searchTerm = command.replace('search for', '').replace('search', '').replace('find', '').trim();
+      
       if (searchTerm) {
         console.log('🔍 Searching for:', searchTerm);
         setStatus(`Searching: ${searchTerm}`);
         speak(`Searching for ${searchTerm}`);
-        setTimeout(() => navigate(`/?search=${encodeURIComponent(searchTerm)}`), 1000);
+        setTimeout(() => {
+          console.log('🔍 Navigating to search...');
+          navigate(`/?search=${encodeURIComponent(searchTerm)}`);
+        }, 500);
       } else {
         setStatus('What to search?');
         speak('What would you like to search for?');
@@ -346,23 +387,29 @@ const BasicVoiceButton = () => {
       return;
     }
 
-    // Health category with fuzzy matching
-    const healthPatterns = ['health', 'health category', 'go to health', 'helth', 'helt', 'medical'];
-    if (fuzzyMatch(command, healthPatterns)) {
-      console.log('🏥 Opening health category');
+    // Health category - VERY SIMPLE MATCHING
+    console.log('🎯 Checking health commands...');
+    if (command.includes('health') || command.includes('medical')) {
+      console.log('✅ ===== HEALTH COMMAND MATCHED =====');
       setStatus('Health category');
       speak('Opening health products category');
-      setTimeout(() => navigate('/category/health'), 1000);
+      setTimeout(() => {
+        console.log('🏥 Navigating to health...');
+        navigate('/category/health');
+      }, 500);
       return;
     }
 
-    // Nutrition category with fuzzy matching
-    const nutritionPatterns = ['nutrition', 'nutrition category', 'go to nutrition', 'nutriton', 'food', 'vitamins'];
-    if (fuzzyMatch(command, nutritionPatterns)) {
-      console.log('🥗 Opening nutrition category');
+    // Nutrition category - VERY SIMPLE MATCHING
+    console.log('🎯 Checking nutrition commands...');
+    if (command.includes('nutrition') || command.includes('vitamin') || command.includes('food')) {
+      console.log('✅ ===== NUTRITION COMMAND MATCHED =====');
       setStatus('Nutrition category');
       speak('Opening nutrition products category');
-      setTimeout(() => navigate('/category/nutrition'), 1000);
+      setTimeout(() => {
+        console.log('🥗 Navigating to nutrition...');
+        navigate('/category/nutrition');
+      }, 500);
       return;
     }
 
@@ -397,9 +444,10 @@ const BasicVoiceButton = () => {
     }
 
     // Default response
-    console.log('❓ Unknown command:', command);
+    console.log('❓ ===== NO COMMAND MATCHED =====');
+    console.log('❓ Command was:', command);
     setStatus(`Unknown: "${transcript}"`);
-    speak(`I heard ${transcript}, but I don't understand that command. Try saying hello, go home, show cart, or search for something.`);
+    speak(`I heard ${transcript}. Try saying: hello, cart, home, search, health, or nutrition.`);
   };
 
   // Removed complex setupContinuousRecognition - using simpler approach
@@ -417,7 +465,7 @@ const BasicVoiceButton = () => {
       // Turn OFF voice recognition
       console.log('🔇 Turning OFF voice recognition');
       setIsVoiceActive(false);
-      isVoiceActiveRef.current = false; // Update ref
+      isVoiceActiveRef.current = false; // Update ref FIRST to prevent restart
       setIsCurrentlyListening(false);
       setStatus('Voice OFF');
 
@@ -427,9 +475,9 @@ const BasicVoiceButton = () => {
         setRestartTimeout(null);
       }
 
+      // Stop recognition gracefully
       try {
-        recognition.stop();
-        recognition.abort();
+        recognition.stop(); // Use stop instead of abort to avoid error
       } catch (error) {
         console.log('Note: Error stopping recognition:', error.message);
       }
@@ -498,7 +546,13 @@ const BasicVoiceButton = () => {
       if (event.error === 'not-allowed') {
         alert('❌ Microphone access denied. Please allow microphone access.');
         setIsVoiceActive(false);
+        isVoiceActiveRef.current = false;
         setStatus('Voice OFF - Permission Denied');
+        return;
+      } else if (event.error === 'aborted') {
+        console.log('ℹ️ Recognition aborted (normal during restart) - ignoring');
+        // Don't treat abort as a real error - it's expected during restarts
+        // Don't even update status - just ignore it completely
         return;
       } else if (event.error === 'no-speech') {
         console.log('⚠️ No speech detected, will auto-restart...');
@@ -523,7 +577,7 @@ const BasicVoiceButton = () => {
           clearTimeout(restartTimeout);
         }
 
-        // Restart with shorter, more reliable timing
+        // Restart with reliable timing - longer delay to avoid "aborted" errors
         const timeout = setTimeout(() => {
           if (isVoiceActiveRef.current) {
             try {
@@ -540,7 +594,7 @@ const BasicVoiceButton = () => {
               } else {
                 console.log('⚠️ Restart failed, trying once more...');
                 setStatus('🔄 Retrying...');
-                // One more try with longer delay
+                // One more try with even longer delay
                 setTimeout(() => {
                   if (isVoiceActiveRef.current) {
                     try {
@@ -554,11 +608,11 @@ const BasicVoiceButton = () => {
                       isVoiceActiveRef.current = false;
                     }
                   }
-                }, 1000);
+                }, 1500);
               }
             }
           }
-        }, 500); // Even faster restart
+        }, 800); // Longer delay to prevent "aborted" errors
 
         setRestartTimeout(timeout);
       } else {

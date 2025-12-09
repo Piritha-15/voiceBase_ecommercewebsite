@@ -16,29 +16,28 @@ const HomePage = () => {
   const { speak } = useVoice();
   const { narratePageLoad, narrateSearch, narrateClick, narrateNavigation } = useVoiceNarration();
 
-  // All available products for search (memoized to prevent re-renders)
-  const allProducts = useMemo(() => [
-    { id: 1, name: 'Blood Pressure Monitor', price: 2500, image: '🩺', category: 'health' },
-    { id: 2, name: 'Vitamin D Tablets', price: 450, image: '💊', category: 'nutrition' },
-    { id: 3, name: 'Walking Stick', price: 800, image: '🦯', category: 'essentials' },
-    { id: 4, name: 'Glucose Monitor', price: 1800, image: '🔬', category: 'health' },
-    { id: 5, name: 'Calcium Supplements', price: 350, image: '🦴', category: 'nutrition' },
-    { id: 6, name: 'Reading Glasses', price: 600, image: '👓', category: 'essentials' },
-    { id: 7, name: 'Digital Thermometer', price: 350, image: '🌡️', category: 'health' },
-    { id: 8, name: 'Pulse Oximeter', price: 1200, image: '📱', category: 'health' },
-    { id: 9, name: 'Omega-3 Capsules', price: 800, image: '🐟', category: 'nutrition' },
-    { id: 10, name: 'Multivitamins', price: 600, image: '🌈', category: 'nutrition' },
-    { id: 11, name: 'Magnifying Glass', price: 400, image: '🔍', category: 'essentials' },
-    { id: 12, name: 'Pill Organizer', price: 250, image: '💊', category: 'essentials' }
-  ], []);
+  const [allProducts, setAllProducts] = useState([]);
+
+  // Fetch products from backend
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch('http://localhost:8000/api/products/');
+        if (response.ok) {
+          const data = await response.json();
+          setAllProducts(data.results || data);
+          setFeaturedProducts((data.results || data).slice(0, 6));
+          setRecommendations((data.results || data).slice(6, 12));
+        }
+      } catch (error) {
+        console.error('Error fetching products:', error);
+      }
+    };
+    
+    fetchProducts();
+  }, []);
 
   useEffect(() => {
-    // Set featured products (first 3)
-    setFeaturedProducts(allProducts.slice(0, 3));
-    
-    // Set recommendations (next 3)
-    setRecommendations(allProducts.slice(3, 6));
-
     // Narrate page load
     const currentSearch = searchParams.get('search');
     if (currentSearch) {
