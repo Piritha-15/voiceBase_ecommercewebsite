@@ -17,7 +17,6 @@ A voice-enabled e-commerce platform designed specifically for senior citizens, f
 - **Frontend**: React with Web Speech API
 - **Backend**: Django REST Framework
 - **Voice Processing**: ASR, NLP, TTS
-- **Payment**: Stripe/Razorpay integration
 
 ## Project Structure
 
