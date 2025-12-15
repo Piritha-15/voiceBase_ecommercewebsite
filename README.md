@@ -217,8 +217,8 @@ sequenceDiagram
 
 ## 📁 Project Structure
 
+```
 voicecart/
-<<<<<<< HEAD
 ├── frontend/                          # React Frontend Application
 │   ├── public/                        # Static assets
 │   ├── src/
