@@ -217,8 +217,8 @@ sequenceDiagram
 
 ## 📁 Project Structure
 
-```
 voicecart/
+<<<<<<< HEAD
 ├── frontend/                          # React Frontend Application
 │   ├── public/                        # Static assets
 │   ├── src/
@@ -820,3 +820,59 @@ For support, email support@voicecart.com or create an issue on GitHub.
 ---
 
 **Made with ❤️ for senior accessibility and independence**
+=======
+├── frontend/ # React frontend
+├── backend/ # Django backend
+├── docs/ # Documentation (optional)
+├── LICENSE
+└── README.md
+
+
+---
+
+## ⚙️ Installation
+
+### Backend Setup
+
+```bash
+cd backend
+python -m venv venv
+
+# Activate virtual environment
+# Windows
+venv\Scripts\activate
+
+# macOS / Linux
+source venv/bin/activate
+
+pip install -r requirements.txt
+python manage.py migrate
+python manage.py runserver
+
+Backend runs at:
+👉 http://localhost:8000
+
+Admin panel:
+👉 http://localhost:8000/admin
+
+Frontend Setup
+
+cd frontend
+npm install
+npm start
+
+Frontend runs at:
+👉 http://localhost:3000
+
+🎤 Example Voice Commands
+
+“go to home”
+
+“search for vitamins”
+
+“add to cart”
+
+“show cart”
+
+“checkout now”
+>>>>>>> a4e6dca05c58dc4b689b74967672b1a5b7586bbf
