@@ -32,15 +32,27 @@ const ProductCard = ({ product }) => {
 
   const handleWishlistToggle = async (e) => {
     e.stopPropagation();
+    console.log('❤️ Wishlist button clicked for product:', product.name, 'ID:', product.id);
+    console.log('🔐 Is authenticated:', isAuthenticated);
+    
     if (!isAuthenticated) {
+      console.log('❌ User not authenticated, redirecting to login');
       speak('Please login to add items to wishlist');
       navigate('/login');
       return;
     }
+    
+    console.log('📤 Calling toggleWishlist...');
     const result = await toggleWishlist(product.id);
+    console.log('📥 Toggle result:', result);
+    
     if (result.success) {
       const message = result.inWishlist ? 'Added to wishlist' : 'Removed from wishlist';
+      console.log('✅ Success:', message);
       speak(message);
+    } else {
+      console.error('❌ Failed to toggle wishlist:', result.error);
+      speak('Failed to update wishlist. Please try again.');
     }
   };
 

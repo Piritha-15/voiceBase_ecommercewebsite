@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useVoice } from '../context/VoiceContext';
 import { useVoiceNarration } from '../context/VoiceNarrationContext';
@@ -14,7 +14,7 @@ const HomePage = () => {
   const [hasSpokenWelcome, setHasSpokenWelcome] = useState(false);
   const navigate = useNavigate();
   const { speak } = useVoice();
-  const { narratePageLoad, narrateSearch, narrateClick, narrateNavigation } = useVoiceNarration();
+  const { narratePageLoad, narrateSearch, narrateNavigation } = useVoiceNarration();
 
   const [allProducts, setAllProducts] = useState([]);
 
@@ -25,9 +25,16 @@ const HomePage = () => {
         const response = await fetch('http://localhost:8000/api/products/');
         if (response.ok) {
           const data = await response.json();
-          setAllProducts(data.results || data);
-          setFeaturedProducts((data.results || data).slice(0, 6));
-          setRecommendations((data.results || data).slice(6, 12));
+          console.log('📦 Products API response:', data);
+          
+          const products = data.results || data;
+          console.log('📦 First product structure:', products[0]);
+          
+          setAllProducts(products);
+          setFeaturedProducts(products.slice(0, 6));
+          setRecommendations(products.slice(6, 12));
+        } else {
+          console.error('Failed to fetch products:', response.status);
         }
       } catch (error) {
         console.error('Error fetching products:', error);
@@ -36,6 +43,12 @@ const HomePage = () => {
     
     fetchProducts();
   }, []);
+
+  // Sync search term with URL params
+  useEffect(() => {
+    const currentSearch = searchParams.get('search');
+    setSearchTerm(currentSearch || '');
+  }, [searchParams]);
 
   useEffect(() => {
     // Narrate page load
@@ -67,14 +80,38 @@ const HomePage = () => {
 
   // Filter products based on search term
   const getSearchResults = () => {
-    if (!searchTerm) return [];
+    if (!searchTerm || !Array.isArray(allProducts)) return [];
     
-    const results = allProducts.filter(product => 
-      product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      product.category.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+    const results = allProducts.filter(product => {
+      if (!product) return false;
+      
+      const searchLower = searchTerm.toLowerCase();
+      
+      // Check product name
+      const nameMatch = product.name && 
+        typeof product.name === 'string' && 
+        product.name.toLowerCase().includes(searchLower);
+      
+      // Check category name (try multiple possible fields)
+      let categoryMatch = false;
+      if (product.category_name && typeof product.category_name === 'string') {
+        categoryMatch = product.category_name.toLowerCase().includes(searchLower);
+      } else if (product.category && typeof product.category === 'string') {
+        categoryMatch = product.category.toLowerCase().includes(searchLower);
+      } else if (product.category && product.category.name && typeof product.category.name === 'string') {
+        categoryMatch = product.category.name.toLowerCase().includes(searchLower);
+      }
+      
+      // Check description
+      const descriptionMatch = product.description && 
+        typeof product.description === 'string' && 
+        product.description.toLowerCase().includes(searchLower);
+      
+      return nameMatch || categoryMatch || descriptionMatch;
+    });
     
     console.log('🔍 Search results for "' + searchTerm + '":', results);
+    console.log('🔍 Total products searched:', allProducts.length);
     return results;
   };
 
@@ -109,7 +146,11 @@ const HomePage = () => {
         {searchTerm && (
           <section className="search-results">
             <h2>Search Results for "{searchTerm}"</h2>
-            {searchResults.length > 0 ? (
+            {allProducts.length === 0 ? (
+              <div className="loading-results">
+                <p>Loading products...</p>
+              </div>
+            ) : searchResults.length > 0 ? (
               <div className="products-grid">
                 {searchResults.map(product => (
                   <ProductCard key={product.id} product={product} />

@@ -3,11 +3,15 @@ import { useAuth } from '../context/AuthContext';
 import './AddressPage.css';
 
 function AddressPage() {
-  const { token } = useAuth();
+  const { token, isAuthenticated, loading: authLoading } = useAuth();
   const [addresses, setAddresses] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
   const [editingId, setEditingId] = useState(null);
+  const [error, setError] = useState(null);
+
+  // Debug logging
+  console.log('AddressPage - Auth state:', { token: !!token, isAuthenticated, authLoading });
   const [formData, setFormData] = useState({
     address_type: 'home',
     full_name: '',
@@ -21,23 +25,52 @@ function AddressPage() {
   });
 
   useEffect(() => {
-    fetchAddresses();
+    if (!authLoading && isAuthenticated && token) {
+      fetchAddresses();
+    } else if (!authLoading && !isAuthenticated) {
+      setLoading(false);
+      setError('Please log in to view your addresses');
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [authLoading, isAuthenticated, token]);
 
   const fetchAddresses = async () => {
+    if (!token) {
+      setError('Authentication required');
+      setLoading(false);
+      return;
+    }
+
     try {
+      setError(null);
       const response = await fetch('http://localhost:8000/api/accounts/addresses/', {
         headers: {
-          'Authorization': `Token ${token}`
+          'Authorization': `Token ${token}`,
+          'Content-Type': 'application/json'
         }
       });
+      
       if (response.ok) {
         const data = await response.json();
-        setAddresses(data);
+        console.log('Addresses API response:', data);
+        // Ensure data is always an array
+        setAddresses(Array.isArray(data) ? data : []);
+      } else if (response.status === 401) {
+        setError('Authentication failed. Please log in again.');
+        setAddresses([]);
+      } else if (response.status === 404) {
+        // Addresses endpoint might not exist yet
+        console.log('Addresses endpoint not found, using empty array');
+        setAddresses([]);
+      } else {
+        console.error('Failed to fetch addresses:', response.status);
+        setError(`Failed to load addresses (${response.status})`);
+        setAddresses([]);
       }
     } catch (error) {
       console.error('Error fetching addresses:', error);
+      setError('Network error. Please check your connection.');
+      setAddresses([]);
     } finally {
       setLoading(false);
     }
@@ -147,12 +180,42 @@ function AddressPage() {
     setShowForm(false);
   };
 
-  if (loading) {
+  if (authLoading || loading) {
     return (
       <div className="address-page">
         <div className="container">
           <h1>My Addresses</h1>
           <p>Loading...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (!isAuthenticated) {
+    return (
+      <div className="address-page">
+        <div className="container">
+          <h1>My Addresses</h1>
+          <div className="error-message">
+            <p>Please log in to view your addresses.</p>
+            <a href="/login" className="login-link">Go to Login</a>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="address-page">
+        <div className="container">
+          <h1>My Addresses</h1>
+          <div className="error-message">
+            <p>{error}</p>
+            <button onClick={fetchAddresses} className="retry-button">
+              🔄 Try Again
+            </button>
+          </div>
         </div>
       </div>
     );
@@ -297,7 +360,7 @@ function AddressPage() {
           </div>
         ) : (
           <div className="address-grid">
-            {addresses.map((address) => (
+            {Array.isArray(addresses) && addresses.length > 0 ? addresses.map((address) => (
               <div key={address.id} className={`address-card ${address.is_default ? 'default' : ''}`}>
                 {address.is_default && (
                   <div className="default-badge">✓ Default</div>
@@ -341,7 +404,13 @@ function AddressPage() {
                   </button>
                 </div>
               </div>
-            ))}
+            )) : (
+              <div className="empty-state">
+                <div className="empty-icon">📍</div>
+                <h2>No addresses saved</h2>
+                <p>Add your delivery address to make checkout faster</p>
+              </div>
+            )}
           </div>
         )}
       </div>

@@ -15,6 +15,27 @@ const OrderSuccessPage = () => {
             return;
         }
 
+        // Save order to localStorage for demo purposes
+        const savedOrders = JSON.parse(localStorage.getItem('voicecart_orders') || '[]');
+        const newOrder = {
+            id: orderInfo.orderId,
+            created_at: new Date().toISOString(),
+            status: 'processing',
+            total: orderInfo.total,
+            payment_method: orderInfo.paymentMethod || 'Card payment',
+            delivery_address: {
+                full_name: orderInfo.orderData?.fullName || 'Customer',
+                address_line1: orderInfo.orderData?.address || 'Address',
+                city: orderInfo.orderData?.city || 'City',
+                pincode: orderInfo.orderData?.pincode || '000000',
+                phone: orderInfo.orderData?.phone || '0000000000'
+            },
+            items: [] // Would be populated from cart in real implementation
+        };
+        
+        savedOrders.unshift(newOrder); // Add to beginning of array
+        localStorage.setItem('voicecart_orders', JSON.stringify(savedOrders));
+
         const successMessage = `Order placed successfully! Your order ID is ${orderInfo.orderId}. Total amount paid is ₹${orderInfo.total}.`;
         speak(successMessage);
     }, [orderInfo, speak, navigate]);
