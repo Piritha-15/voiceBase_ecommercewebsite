@@ -1,3 +1,5 @@
+https://www.canva.com/design/DAG-f9HimJw/vLbx0iMxQ_DIgkT0Ia1MHw/edit?utm_content=DAG-f9HimJw&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
+
 # 🛒 VoiceCart - Voice-First E-Commerce Platform for Seniors
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
