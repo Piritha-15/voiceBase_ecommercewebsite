@@ -1,6 +1,6 @@
 https://www.canva.com/design/DAG-f9HimJw/vLbx0iMxQ_DIgkT0Ia1MHw/edit?utm_content=DAG-f9HimJw&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
 
-# 🛒 VoiceCart - Voice-First E-Commerce Platform for Seniors
+#  VoiceCart - Voice-First E-Commerce Platform for Seniors
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/downloads/)
@@ -9,24 +9,24 @@ https://www.canva.com/design/DAG-f9HimJw/vLbx0iMxQ_DIgkT0Ia1MHw/edit?utm_content
 
 A comprehensive voice-enabled e-commerce platform specifically designed for senior citizens, featuring intuitive voice navigation, AI-powered recommendations, and accessible user interfaces.
 
-## 📋 Table of Contents
+##  Table of Contents
 
-- [🎯 Overview](#-overview)
-- [🏗️ Architecture](#️-architecture)
-- [🔄 Data Flow](#-data-flow)
-- [🚀 Features](#-features)
-- [💻 Tech Stack](#-tech-stack)
-- [📁 Project Structure](#-project-structure)
-- [⚙️ Installation & Setup](#️-installation--setup)
-- [📚 API Documentation](#-api-documentation)
-- [🧪 Testing](#-testing)
-- [🎤 Voice Commands](#-voice-commands)
-- [🔒 Security](#-security)
-- [📱 Browser Compatibility](#-browser-compatibility)
-- [🤝 Contributing](#-contributing)
-- [📄 License](#-license)
+- [ Overview](#-overview)
+- [ Architecture](#️-architecture)
+- [ Data Flow](#-data-flow)
+- [ Features](#-features)
+- [ Tech Stack](#-tech-stack)
+- [ Project Structure](#-project-structure)
+- [ Installation & Setup](#️-installation--setup)
+- [ API Documentation](#-api-documentation)
+- [ Testing](#-testing)
+- [ Voice Commands](#-voice-commands)
+- [ Security](#-security)
+- [ Browser Compatibility](#-browser-compatibility)
+- [ Contributing](#-contributing)
+- [ License](#-license)
 
-## 🎯 Overview
+##  Overview
 
 VoiceCart is a revolutionary e-commerce platform that prioritizes accessibility and ease of use for senior citizens. By integrating advanced voice recognition technology with a user-friendly interface, it enables seniors to shop online independently and confidently.
 
@@ -37,7 +37,7 @@ VoiceCart is a revolutionary e-commerce platform that prioritizes accessibility 
 - **Simplicity**: Intuitive design with minimal cognitive load
 - **Support**: Integrated caregiver access and emergency assistance
 
-## 🏗️ Architecture
+##  Architecture
 
 ### System Architecture Overview
 
@@ -109,7 +109,7 @@ graph TB
 └─────────────────────────────────────────────────────────────────┘
 ```
 
-## 🔄 Data Flow
+##  Data Flow
 
 ### User Authentication Flow
 
@@ -171,31 +171,31 @@ sequenceDiagram
     F-->>U: Order Confirmation
 ```
 
-## 🚀 Features
+##  Features
 
 ### Core Features
-- **🎤 Voice Navigation**: Complete voice-controlled interface
-- **🛍️ Product Catalog**: Health, nutrition, and essential products
-- **🛒 Smart Cart**: Voice-enabled cart management
-- **💳 Secure Checkout**: Multi-step payment with voice authentication
-- **📦 Order Tracking**: Complete order history and status tracking
-- **❤️ Wishlist**: Voice-controlled wishlist management
+- ** Voice Navigation**: Complete voice-controlled interface
+- ** Product Catalog**: Health, nutrition, and essential products
+- ** Smart Cart**: Voice-enabled cart management
+- ** Secure Checkout**: Multi-step payment with voice authentication
+- ** Order Tracking**: Complete order history and status tracking
+- ** Wishlist**: Voice-controlled wishlist management
 
 ### Accessibility Features
-- **🔊 Auto-Narration**: Automatic reading of page content
-- **🎯 Large UI Elements**: Senior-friendly design with large fonts
-- **🌈 High Contrast**: WCAG AA compliant color schemes
-- **⌨️ Keyboard Navigation**: Full keyboard accessibility
-- **📱 Mobile Responsive**: Optimized for all devices
+- ** Auto-Narration**: Automatic reading of page content
+- ** Large UI Elements**: Senior-friendly design with large fonts
+- ** High Contrast**: WCAG AA compliant color schemes
+- ** Keyboard Navigation**: Full keyboard accessibility
+- ** Mobile Responsive**: Optimized for all devices
 
 ### Advanced Features
-- **🔐 Voice Biometrics**: 5-phrase voice authentication
-- **🤖 AI Recommendations**: Personalized product suggestions
-- **👨‍⚕️ Health Integration**: Health condition-based filtering
-- **👥 Caregiver Access**: Emergency assistance and remote help
-- **🌐 Offline Support**: Local storage fallbacks
+- ** Voice Biometrics**: 5-phrase voice authentication
+- ** AI Recommendations**: Personalized product suggestions
+- ** Health Integration**: Health condition-based filtering
+- ** Caregiver Access**: Emergency assistance and remote help
+- ** Offline Support**: Local storage fallbacks
 
-## 💻 Tech Stack
+##  Tech Stack
 
 ### Frontend
 - **React 18.2+**: Modern React with hooks and context
@@ -217,7 +217,7 @@ sequenceDiagram
 - **Speech Coordination**: Anti-interruption system
 - **Auto-Narration**: Intelligent content reading
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 voicecart/
@@ -271,7 +271,7 @@ voicecart/
 └── README.md                          # This file
 ```
 
-## ⚙️ Installation & Setup
+##  Installation & Setup
 
 ### Prerequisites
 - **Python 3.8+**
@@ -587,7 +587,7 @@ Content-Type: application/json
 }
 ```
 
-## 🧪 Testing
+##  Testing
 
 ### Test Scenarios
 
@@ -708,11 +708,11 @@ yarn test
 #### Voice Recognition Tests
 1. Open browser console (F12)
 2. Navigate to any page with voice functionality
-3. Click the voice button (🎤)
+3. Click the voice button 
 4. Speak test commands
 5. Check console logs for recognition results
 
-## 🎤 Voice Commands
+##  Voice Commands
 
 ### Navigation Commands
 - **"go to home"** → Navigate to home page
@@ -743,7 +743,7 @@ yarn test
 - **"repeat"** → Repeat last announcement
 - **"stop"** → Stop current voice operation
 
-## 🔒 Security
+##  Security
 
 ### Authentication & Authorization
 - **JWT Token Authentication**: Secure API access
@@ -763,25 +763,25 @@ yarn test
 - **Minimal Data Collection**: Only necessary information stored
 - **Audit Logging**: Security event tracking
 
-## 📱 Browser Compatibility
+##  Browser Compatibility
 
 ### Supported Browsers
-- **Chrome 80+** ✅ Full support
-- **Edge 80+** ✅ Full support
-- **Safari 14+** ✅ Full support
-- **Firefox 70+** ⚠️ Limited voice support
+- **Chrome 80+**  Full support
+- **Edge 80+**  Full support
+- **Safari 14+**  Full support
+- **Firefox 70+**  Limited voice support
 
 ### Mobile Support
-- **Android Chrome** ✅ Full support
-- **iOS Safari** ✅ Full support
-- **Mobile Edge** ✅ Full support
+- **Android Chrome**  Full support
+- **iOS Safari**  Full support
+- **Mobile Edge**  Full support
 
 ### Voice API Support
 - **Web Speech API**: Required for voice features
 - **Speech Recognition**: Chrome, Edge, Safari
 - **Speech Synthesis**: All modern browsers
 
-## 🤝 Contributing
+##  Contributing
 
 
 ### Code Standards
@@ -802,20 +802,20 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-## 🎉 Acknowledgments
+##  Acknowledgments
 
 - **Web Speech API** for browser-native voice recognition
 - **Django REST Framework** for robust API development
 - **React** for modern frontend development
 - **Senior citizens** who inspired this accessible design
 
-## 📞 Support
+##  Support
 
 For support, email support@voicecart.com or create an issue on GitHub.
 
 ---
 
-**Made with ❤️ for senior accessibility and independence**
+**Made for senior accessibility and independence**
 =======
 ├── frontend/ # React frontend
 ├── backend/ # Django backend
@@ -826,7 +826,7 @@ For support, email support@voicecart.com or create an issue on GitHub.
 
 ---
 
-## ⚙️ Installation
+##  Installation
 
 ### Backend Setup
 
@@ -846,10 +846,10 @@ python manage.py migrate
 python manage.py runserver
 
 Backend runs at:
-👉 http://localhost:8000
+ http://localhost:8000
 
 Admin panel:
-👉 http://localhost:8000/admin
+ http://localhost:8000/admin
 
 Frontend Setup
 
@@ -858,9 +858,9 @@ npm install
 npm start
 
 Frontend runs at:
-👉 http://localhost:3000
+ http://localhost:3000
 
-🎤 Example Voice Commands
+ Example Voice Commands
 
 “go to home”
 
